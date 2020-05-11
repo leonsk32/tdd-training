@@ -1,13 +1,17 @@
 package vendingmachine;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class VendingMachine {
     private List<Money> insertedMoneys = new ArrayList<>();
+    private List<Money> validMoneys = Arrays.asList(
+        Money.COIN10, Money.COIN50, Money.COIN100, Money.COIN500, Money.BILL1000
+    );
 
     public int insert(Money money) {
-        if (money == Money.COIN1 || money == Money.COIN5) {
+        if (!validMoneys.contains(money)) {
             return money.getValue();
         }
 
