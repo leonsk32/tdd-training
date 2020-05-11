@@ -61,23 +61,21 @@ public class VendingMachineTests {
         assertThat(actual).isEqualTo(1200);
     }
 
-    @Test
-    void invalidMoney() {
-        int change = target.insert(Money.COIN1);
+    @ParameterizedTest
+    @MethodSource("invalidMoneyParams")
+    void invalidMoneys(Money money, int expectedChange) {
+        int change = target.insert(money);
 
         String actual = target.displayTotalAmount();
 
-        assertThat(change).isEqualTo(1);
+        assertThat(change).isEqualTo(expectedChange);
         assertThat(actual).isEqualTo("0");
     }
 
-    @Test
-    void invalidMoney2() {
-        int change = target.insert(Money.COIN5);
-
-        String actual = target.displayTotalAmount();
-
-        assertThat(change).isEqualTo(5);
-        assertThat(actual).isEqualTo("0");
+    static Stream<Arguments> invalidMoneyParams() {
+        return Stream.of(
+            Arguments.arguments(Money.COIN1, 1),
+            Arguments.arguments(Money.COIN5, 5)
+        );
     }
 }
