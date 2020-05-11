@@ -70,4 +70,14 @@ public class VendingMachineTests {
         assertThat(change).isEqualTo(1);
         assertThat(actual).isEqualTo("0");
     }
+
+    @Test
+    void invalidMoney2() {
+        int change = target.insert(Money.COIN5);
+
+        String actual = target.displayTotalAmount();
+
+        assertThat(change).isEqualTo(5);
+        assertThat(actual).isEqualTo("0");
+    }
 }

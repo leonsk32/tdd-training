@@ -7,8 +7,8 @@ public class VendingMachine {
     private List<Money> insertedMoneys = new ArrayList<>();
 
     public int insert(Money money) {
-        if (money == Money.COIN1) {
-            return 1;
+        if (money == Money.COIN1 || money == Money.COIN5) {
+            return money.getValue();
         }
 
         this.insertedMoneys.add(money);

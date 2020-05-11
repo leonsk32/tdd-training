@@ -2,6 +2,7 @@ package vendingmachine;
 
 public enum Money {
     COIN1(1),
+    COIN5(5),
     COIN10(10),
     COIN50(50),
     COIN100(100),
