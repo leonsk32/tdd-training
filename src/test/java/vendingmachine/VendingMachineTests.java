@@ -2,26 +2,28 @@ package vendingmachine;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 public class VendingMachineTests {
-    @Test
-    void insert10() {
+    @ParameterizedTest
+    @MethodSource("params")
+    void insert(Money money, int expected) {
         VendingMachine target = new VendingMachine();
-        target.insert(Money.COIN10);
+        target.insert(money);
 
         int actual = target.displayTotalAmount();
 
-        assertThat(actual).isEqualTo(10);
+        assertThat(actual).isEqualTo(expected);
     }
 
-    @Test
-    void insert50() {
-        VendingMachine target = new VendingMachine();
-        target.insert(Money.COIN50);
-
-        int actual = target.displayTotalAmount();
-
-        assertThat(actual).isEqualTo(50);
+    static Stream<Arguments> params() {
+        return Stream.of(
+            Arguments.arguments(Money.COIN10, 10),
+            Arguments.arguments(Money.COIN50, 50)
+        );
     }
 }
