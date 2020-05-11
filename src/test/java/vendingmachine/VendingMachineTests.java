@@ -2,6 +2,7 @@ package vendingmachine;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -10,10 +11,16 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 public class VendingMachineTests {
+    private VendingMachine target;
+
+    @BeforeEach
+    void setUp() {
+        target = new VendingMachine();
+    }
+
     @ParameterizedTest
     @MethodSource("params")
     void insert(Money money, String expected) {
-        VendingMachine target = new VendingMachine();
         target.insert(money);
 
         String actual = target.displayTotalAmount();
@@ -33,7 +40,6 @@ public class VendingMachineTests {
 
     @Test
     void insertManyTimes() {
-        VendingMachine target = new VendingMachine();
         target.insert(Money.COIN10);
         target.insert(Money.COIN10);
         target.insert(Money.COIN50);
@@ -45,7 +51,6 @@ public class VendingMachineTests {
 
     @Test
     void refund() {
-        VendingMachine target = new VendingMachine();
         target.insert(Money.COIN100);
         target.insert(Money.COIN100);
         target.insert(Money.BILL1000);
@@ -53,5 +58,12 @@ public class VendingMachineTests {
         int actual = target.refund();
 
         assertThat(actual).isEqualTo(1200);
+    }
+
+    @Test
+    void invalidMoney() {
+        int actual = target.insert(Money.COIN1);
+
+        assertThat(actual).isEqualTo(1);
     }
 }

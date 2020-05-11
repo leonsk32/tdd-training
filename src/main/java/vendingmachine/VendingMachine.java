@@ -6,8 +6,9 @@ import java.util.List;
 public class VendingMachine {
     private List<Money> insertedMoneys = new ArrayList<>();
 
-    public void insert(Money money) {
+    public int insert(Money money) {
         this.insertedMoneys.add(money);
+        return 1;
     }
 
     public String displayTotalAmount() {
