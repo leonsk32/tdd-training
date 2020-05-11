@@ -8,7 +8,12 @@ public class VendingMachine {
 
     public int insert(Money money) {
         this.insertedMoneys.add(money);
-        return 1;
+
+        if (money == Money.COIN1) {
+            return 1;
+        }
+
+        return 0;
     }
 
     public String displayTotalAmount() {

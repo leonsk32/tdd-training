@@ -21,10 +21,11 @@ public class VendingMachineTests {
     @ParameterizedTest
     @MethodSource("params")
     void insert(Money money, String expected) {
-        target.insert(money);
+        int change = target.insert(money);
 
         String actual = target.displayTotalAmount();
 
+        assertThat(change).isEqualTo(0);
         assertThat(actual).isEqualTo(expected);
     }
 
