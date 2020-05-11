@@ -63,8 +63,11 @@ public class VendingMachineTests {
 
     @Test
     void invalidMoney() {
-        int actual = target.insert(Money.COIN1);
+        int change = target.insert(Money.COIN1);
 
-        assertThat(actual).isEqualTo(1);
+        String actual = target.displayTotalAmount();
+
+        assertThat(change).isEqualTo(1);
+        assertThat(actual).isEqualTo("0");
     }
 }
