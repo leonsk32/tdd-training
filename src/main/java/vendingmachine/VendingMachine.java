@@ -10,13 +10,17 @@ public class VendingMachine {
         this.insertedMoneys.add(money);
     }
 
-    public int displayTotalAmount() {
-        return insertedMoneys.stream()
-            .mapToInt(Money::getValue)
-            .sum();
+    public String displayTotalAmount() {
+        return String.valueOf(getSum());
     }
 
     public int refund() {
-        return displayTotalAmount();
+        return getSum();
+    }
+
+    private int getSum() {
+        return insertedMoneys.stream()
+            .mapToInt(Money::getValue)
+            .sum();
     }
 }
