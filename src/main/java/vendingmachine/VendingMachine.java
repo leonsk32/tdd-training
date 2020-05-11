@@ -1,13 +1,18 @@
 package vendingmachine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class VendingMachine {
-    private Money money = null;
+    private List<Money> insertedMoneys = new ArrayList<>();
 
     public void insert(Money money) {
-        this.money = money;
+        this.insertedMoneys.add(money);
     }
 
     public int displayTotalAmount() {
-        return money.getValue();
+        return insertedMoneys.stream()
+            .mapToInt(Money::getValue)
+            .sum();
     }
 }

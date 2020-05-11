@@ -2,6 +2,7 @@ package vendingmachine;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -28,5 +29,17 @@ public class VendingMachineTests {
             Arguments.arguments(Money.COIN500, 500),
             Arguments.arguments(Money.BILL1000, 1000)
         );
+    }
+
+    @Test
+    void insertManyTimes() {
+        VendingMachine target = new VendingMachine();
+        target.insert(Money.COIN10);
+        target.insert(Money.COIN10);
+        target.insert(Money.COIN50);
+
+        int actual = target.displayTotalAmount();
+
+        assertThat(actual).isEqualTo(70);
     }
 }
