@@ -1,11 +1,13 @@
 package vendingmachine;
 
 public class VendingMachine {
-    public void insert(Money money) {
+    private Money money = null;
 
+    public void insert(Money money) {
+        this.money = money;
     }
 
     public int displayTotalAmount() {
-        return 10;
+        return money.getValue();
     }
 }
