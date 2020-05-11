@@ -15,4 +15,8 @@ public class VendingMachine {
             .mapToInt(Money::getValue)
             .sum();
     }
+
+    public int refund() {
+        return displayTotalAmount();
+    }
 }

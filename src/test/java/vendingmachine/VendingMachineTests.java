@@ -42,4 +42,16 @@ public class VendingMachineTests {
 
         assertThat(actual).isEqualTo(70);
     }
+
+    @Test
+    void refund() {
+        VendingMachine target = new VendingMachine();
+        target.insert(Money.COIN100);
+        target.insert(Money.COIN100);
+        target.insert(Money.BILL1000);
+
+        int actual = target.refund();
+
+        assertThat(actual).isEqualTo(1200);
+    }
 }
