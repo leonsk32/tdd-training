@@ -8,6 +8,8 @@ public enum Money {
     COIN100(100),
     COIN500(500),
     BILL1000(1000),
+    BILL5000(5000),
+    BILL10000(10000),
     ;
 
     private int value;

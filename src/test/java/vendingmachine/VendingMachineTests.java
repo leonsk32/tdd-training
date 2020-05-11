@@ -75,7 +75,9 @@ public class VendingMachineTests {
     static Stream<Arguments> invalidMoneyParams() {
         return Stream.of(
             Arguments.arguments(Money.COIN1, 1),
-            Arguments.arguments(Money.COIN5, 5)
+            Arguments.arguments(Money.COIN5, 5),
+            Arguments.arguments(Money.BILL5000, 5000),
+            Arguments.arguments(Money.BILL10000, 10000)
         );
     }
 }
